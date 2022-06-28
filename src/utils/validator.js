@@ -30,7 +30,10 @@ const isValidDate = function (dateform) {
     let month = Number(split[1])
     let year = Number(split[2])
 
-    if (month > 12)
+    if ( month > 12)
+        return false
+
+    if(month <= 0)
         return false
 
     var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

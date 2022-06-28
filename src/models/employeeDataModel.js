@@ -1,21 +1,20 @@
 const mongoose = require('mongoose')
-
-
+const { validator } = require('../utils')
 const employeeDataSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: 'First Name of Employee is required',
         Comment: 'Holds First Name of the Employee'
     },
-    lastName: [{
+    lastName: {
         type: String,
         required: 'Last Name of Employee is Required',
         Comment: 'Holds Last Name of the Employee'
-    }],
+    },
     birthDate: {
-        type: Date,
+        type: String,
         required: 'birthDate of Employee is required',
-        Comment: 'Holds birth date of the Employee'
+        Comment: 'Holds birth date of the Employee',
     },
     country: {
         type: String,
@@ -28,6 +27,4 @@ const employeeDataSchema = new mongoose.Schema({
         Comment: 'Holds city of employee'
     }
 }, { timestamps: true })
-
-
 module.exports = mongoose.model('EmployeeData', employeeDataSchema, 'employeedata')

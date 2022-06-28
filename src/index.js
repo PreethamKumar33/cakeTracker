@@ -12,9 +12,12 @@ app.use(multer().any())
 
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb+srv://bpreetham99:ZephyrusM%4020@cluster0.u3oms.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true, useFindAndModify: false})
-    .then(() => console.log('mongodb running on 27017'))
-    .catch(err => console.log(err))
+mongoose.connect("mongodb+srv://bpreetham99:ZephyrusM%4020@cluster0.u3oms.mongodb.net/Datavid?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }, 
+    err => {
+    if(err) throw err;
+    console.log('Connected to MongoDB!!!')
+    }
+);
 
 app.use('/', route);
 
