@@ -24,11 +24,11 @@ const isValidNumber = function (value) {
 }
 
 const isValidDate = function (dateform) {
-    // in form dd/mm/yyyy
-    let split = dateform.split('/')
-    let day = Number(split[0])
+    // in form yyyy-mm-dd
+    let split = dateform.split('-')
+    let year = Number(split[0])
     let month = Number(split[1])
-    let year = Number(split[2])
+    let day = Number(split[2])
 
     if ( month > 12)
         return false
@@ -49,10 +49,10 @@ const isValidDate = function (dateform) {
 
 const isValidAge = function (dateForm) {
     var today = new Date();
-    let split = dateForm.split('/')
-    let date = split[0];
+    let split = dateForm.split('-')
+    let year = split[0];
     let month = split[1];
-    let year = split[2];
+    let date = split[2];
 
     let tempdate = year + '/' + month + '/' + date
 

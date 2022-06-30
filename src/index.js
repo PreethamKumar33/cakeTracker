@@ -1,11 +1,13 @@
 const express = require('express');
 var bodyParser = require('body-parser');
 const multer = require('multer')
+const cors = require('cors')
 
 const route = require('./routes/route.js');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer().any())

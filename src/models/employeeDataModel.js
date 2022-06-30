@@ -26,5 +26,5 @@ const employeeDataSchema = new mongoose.Schema({
         required: 'city of Employee is Required',
         Comment: 'Holds city of employee'
     }
-}, { timestamps: true })
+}, { timestamps: false, versionKey: false })
 module.exports = mongoose.model('EmployeeData', employeeDataSchema, 'employeedata')
