@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { ValidateCountry, ValidateAge } from '../../validators/form.validator'
 
 import { Subject } from "rxjs";
 import { appService } from '../../services/app.service'
@@ -15,26 +17,31 @@ import { appService } from '../../services/app.service'
 export class AddDetailsComponent implements OnInit {
   Success: any;
   errormsg: any;
+  myForm!: FormGroup;
 
   constructor(
     private appService: appService,
     private router: Router,
-    // private fb:FormControl
+    private fb: FormBuilder
   ) { }
 
   error = new Subject<string>();
 
   ngOnInit(): void {
     this.Success = false;
-    // this.fb.value({
-    //   firstNAme : ['',Validators.required]
-    // })
+    this.myForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required ],
+      birthDate: ['', [Validators.required, ValidateAge]],
+      country: ['', [Validators.required, ValidateCountry]],
+      city: ['', Validators.required,]
+    });
   }
 
-  onSubmit(firstName: string, lastName: string, birthDate: string, country: string, city: string) {
+  onSubmit(form: FormGroup) {
 
     this.appService
-      .addDetails(firstName, lastName, birthDate, country, city)
+      .addDetails(form.value.firstName, form.value.lastName, form.value.birthDate, form.value.country, form.value.city)
       .subscribe(
         (responseData) => {
           this.Success = responseData.status
@@ -48,4 +55,9 @@ export class AddDetailsComponent implements OnInit {
         }
       );
   };
+
+  get DOB(){
+    let tempDOB = this.myForm.get('birthDate');
+    return tempDOB?.value.length < 0
+  }
 }

@@ -33,37 +33,55 @@
             <mat-label class="ErrorData">Error: {{ errormsg }}</mat-label>
         </div>
 
-        <form fxLayoutAlign="stretch" fxLayout='column'>
-            <mat-form-field class="input">
-                <label>First Name</label>
+        <form fxLayoutAlign="stretch" fxLayout='column' [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+            <div class="input">
+                <label>First Name:</label>
+                <br>
                 <input matInput autocomplete="off" id="firstName" required #firstName
-                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">
-            </mat-form-field>
+                formControlName="firstName" placeholder="Your first name">
+            </div>
+            <mat-error class="errordiv" *ngIf="myForm.get('firstName')!.invalid && (myForm.get('firstName')!.dirty || myForm.get('firstName')!.touched)">
+                Please provide a first name.
+            </mat-error>
 
             <br>
 
-            <mat-form-field class="input">
-                <label>Last Name</label>
+            <div class="input">
+                <label>Last Name:</label>
+                <br>
                 <input matInput id="lastName" required #lastName
-                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">
-            </mat-form-field>
+                formControlName="lastName" placeholder="Your last name">
+            </div>
+            <mat-error class="errordiv" *ngIf="myForm.get('lastName')!.invalid && (myForm.get('lastName')!.dirty || myForm.get('lastName')!.touched)">
+                Please provide a last name.
+            </mat-error>
 
             <br>
 
-            <mat-form-field appearance="fill" class="input">
-                <label>Choose a date</label>
-                <input type="date" name="dateofbirth" id="dateofbirth" matInput #birthDate
-                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)"
+            <div appearance="fill" class="input">
+                <label>Choose a date:</label>
+                <br>
+                <input type="date" name="dateofbirth" id="dateofbirth" matInput
+                formControlName="birthDate"
                     required>
-                <mat-hint>MM/DD/YYYY</mat-hint>
-            </mat-form-field>
+            </div>
+            <mat-error class="errordiv" *ngIf="DOB && (myForm.get('birthDate')!.dirty || myForm.get('birthDate')!.touched)">
+                Please provide a Date of Birth.
+            </mat-error>
+            <mat-error class="errordiv" *ngIf="(myForm.get('birthDate')!.invalid) && myForm.get('birthDate')!.dirty">
+                Age is under 18
+            </mat-error>
+            
 
             <br>
 
-            <mat-form-field appearance="fill" class="input">
-                <label>Country</label>
-                <select matNativeControl id="country" required #country>
-                    <option value="">Select Option</option>
+            <div appearance="fill" class="input">
+                <label>Country:</label>
+                <br>
+                <select matNativeControl id="country" 
+                required #country
+                formControlName="country" placeholder="Your Country">
+                    <option value="">Select a Country</option>
                     <option value='India'>India</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="Norway">Norway</option>
@@ -71,22 +89,28 @@
                     <option value="United States of America">United States of America</option>
                     <option value="Romania">Romania</option>
                 </select>
-            </mat-form-field>
+            </div>
+            <mat-error class="errordiv" *ngIf="myForm.get('country')!.invalid && (myForm.get('country')!.dirty || myForm.get('country')!.touched)">
+                Please provide a country.
+            </mat-error>
 
             <br>
 
-            <mat-form-field class="input">
-                <label>City</label>
+            <div class="input">
+                <label>City:</label>
+                <br>
                 <input matInput id="city" required #city
-                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">
-            </mat-form-field>
+                formControlName="city" placeholder="Your City">
+            </div>
+            <mat-error class="errordiv" *ngIf="myForm.get('city')!.invalid && (myForm.get('city')!.dirty || myForm.get('city')!.touched)">
+                Please provide a city.
+            </mat-error>
 
             <br>
 
-            <mat-form-field class="submit">
-                <button mat-raised-button type="submit" class="submitbtn"
-                    (click)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">Submit</button>
-            </mat-form-field>
+            <div class="submit">
+                <button [disabled]="myForm.invalid" mat-raised-button type="submit" class="submitbtn">Submit</button>
+            </div>
         </form>
     </mat-card>
 </div>

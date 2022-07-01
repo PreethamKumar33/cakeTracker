@@ -9,10 +9,10 @@ input {
 
 .body {
   // background-color: white;
-  padding-top: 75px;
+  padding-top: 150px;
   padding-right: 410px;
   padding-left: 425px;
-  height: 534px;
+  height: 455px;
 }
 
 .Details {
@@ -164,4 +164,8 @@ a:hover {
 
   color: white;
   border-radius: 5px;
+}
+
+mat-error {
+  padding-left: 100px;
 }
