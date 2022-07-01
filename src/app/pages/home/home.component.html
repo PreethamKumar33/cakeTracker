@@ -1,0 +1,27 @@
+<header></header>
+
+<div class="body">
+  <div class="nextbd">
+    <h4>Upcoming Birthdays</h4>
+    <p *ngFor="let data of upcomingBD"> Name: {{data.firstName + ' ' + data.lastName}} <br> birthDay: {{data.birthDate}}
+    </p>
+  </div>
+
+  <div class="vl"></div>
+
+  <div class="bdtoday">
+
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/DenverCoder1/Responsive-Birthday-Card/main/birthday.svg"
+        alt="birthday" class="birthday">
+      <div  *ngIf="todayBD.length > 0"  class="text">
+        <h1 *ngFor="let data of todayBD">Happy Birthday {{ data }}!</h1>
+        <p>I hope you have a wonderful birthday</p>
+      </div>
+      <div  *ngIf="todayBD.length <= 0"  class="text">
+        <h1 >No Birthdays Today!</h1>
+      </div>
+      <div class="space"></div>
+    </div>
+
+  </div>

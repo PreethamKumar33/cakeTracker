@@ -1,0 +1,100 @@
+header {
+  padding-bottom: 70px;
+}
+
+.body {
+  position: relative;
+  // padding-left: 370px;
+  background-color: skyblue;
+  height: 538px;
+}
+
+.bdtoday {
+  padding-top: 120px;
+  float: right;
+  padding-right: 220px;
+}
+
+.nextbd {
+  float: left;
+  background-color: white;
+  width: 220px;
+  height: 538px;
+  padding-left: 30px;
+}
+
+.vl {
+  // box-shadow: 3px #231F20;
+  border-left: 2px solid #231F10;
+  height: 538px;
+  position: absolute;
+  left: 250px;
+  margin-left: 0px;
+  top: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+body {
+  background: #008888;
+  display: grid;
+  place-items: center;
+  height: 50vh;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.card {
+  background: #fdfdfd;
+  border-radius: 4px;
+  height: 43vh;
+  width: 40vw;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 500px) {
+  .card {
+    flex-direction: row-reverse;
+  }
+
+  .card img.birthday {
+    width: 50%;
+    max-width: 25vw;
+    max-height: unset;
+  }
+}
+
+@media only screen and (max-height: 640px) {
+  .card {
+    flex-direction: row-reverse;
+  }
+
+  .card img.birthday {
+    width: 50%;
+    max-width: 25vw;
+    max-height: unset;
+  }
+}
+
+img.birthday {
+  max-height: 20vh;
+}
+
+.text {
+  padding: 1em;
+}
+
+.space {
+  height: 50px;
+}

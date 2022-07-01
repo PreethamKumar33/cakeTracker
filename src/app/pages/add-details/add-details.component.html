@@ -1,0 +1,92 @@
+<div class="header-container">
+    <div class="logo">
+        <img src="https://datavid.com/wp-content/uploads/2021/09/LOGO-COLOURS-4.png">
+    </div>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">
+                <mat-icon class="fa fa-minus-square-o" style="font-size: 30px;">menu</mat-icon>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a routerLink="/home" routerLinkActive="active">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>Home
+                </a>
+                <a routerLink="/addDetails" routerLinkActive="active">
+                    <mat-icon>add</mat-icon> Add
+                </a>
+                <a routerLink="/allDetails" routerLinkActive="active">
+                    <mat-icon> notes</mat-icon> All Birthdays
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="body">
+    <mat-card fxFlex="25" class="Detials" fxLayoutAlign="center center">
+        <div class="onSuccess" *ngIf="Success == true">
+            <mat-label class="SuccessData">User Details Added Sucessfully</mat-label>
+        </div>
+
+        <div class="onError" *ngIf="errormsg">
+            <mat-label class="ErrorData">Error: {{ errormsg }}</mat-label>
+        </div>
+
+        <form fxLayoutAlign="stretch" fxLayout='column'>
+            <mat-form-field class="input">
+                <label>First Name</label>
+                <input matInput autocomplete="off" id="firstName" required #firstName
+                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input">
+                <label>Last Name</label>
+                <input matInput id="lastName" required #lastName
+                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field appearance="fill" class="input">
+                <label>Choose a date</label>
+                <input type="date" name="dateofbirth" id="dateofbirth" matInput #birthDate
+                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)"
+                    required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field appearance="fill" class="input">
+                <label>Country</label>
+                <select matNativeControl id="country" required #country>
+                    <option value="">Select Option</option>
+                    <option value='India'>India</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Poland">Poland</option>
+                    <option value="United States of America">United States of America</option>
+                    <option value="Romania">Romania</option>
+                </select>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="input">
+                <label>City</label>
+                <input matInput id="city" required #city
+                    (keyup.enter)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="submit">
+                <button mat-raised-button type="submit" class="submitbtn"
+                    (click)="onSubmit(firstName.value, lastName.value, birthDate.value, country.value, city.value)">Submit</button>
+            </mat-form-field>
+        </form>
+    </mat-card>
+</div>
