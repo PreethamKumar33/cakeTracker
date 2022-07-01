@@ -57,6 +57,12 @@ const createEntry = async function (req, res) {
             res.status(400).send({ status: false, message: `${country} is not a valid Country` })
             return
         }
+
+        if (country == "Select Option") {
+            res.status(400).send({ status: false, message: `Please Select a Country` })
+            return
+        }
+
         if (!validator.isValidString(city)) {
             res.status(400).send({ status: false, message: `${city} should be a string` })
             return
@@ -64,7 +70,7 @@ const createEntry = async function (req, res) {
         // Checks if there is some similar data in database
         let employee = await employeeDataModel.findOne({firstName, lastName, country, city})
         if(validator.isValid(employee)){
-            res.status(400).send({ status: false, message: `An Employee with similar data exists` })
+            res.status(400).send({ status: false, message: `An Employee already exists` })
             return
         }
 
